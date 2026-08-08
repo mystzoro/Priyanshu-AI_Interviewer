@@ -67,31 +67,31 @@ an actual interviewer:
 ```
                          POST /api/interview
                                 │
-                       ┌────────▼─────────┐
+                       ┌────────▼──────────┐
                        │   server.js       │  plain node:http, zero deps
-                       └────────┬─────────┘
+                       └────────┬──────────┘
                                 │
-                     ┌──────────▼───────────┐
-                     │ src/engine/interviewer.js │  orchestrator / state machine
-                     └──────────┬───────────┘
-             ┌──────────────────┼───────────────────────┐
+                     ┌──────────▼───────────────┐
+                     │src/engine/interviewer.js │  orchestrator / state machine
+                     └──────────┬───────────────┘
+             ┌──────────────────┼────────────────────────┐
              │                  │                        │
-    ┌────────▼────────┐ ┌───────▼────────┐    ┌──────────▼─────────┐
-    │ topicPlanner.js  │ │ evaluator.js   │    │ questionGenerator.js│
-    │ (deterministic   │ │ (silent scorer,│    │ (persona-driven     │
-    │  priority router)│ │  tool-use JSON)│    │  natural language)  │
-    └──────────────────┘ └────────────────┘    └──────────────────────┘
+    ┌────────▼────────┐  ┌───────▼────────┐    ┌──────────▼─────────┐
+    │ topicPlanner.js │  │ evaluator.js   │    │questionGenerator.js│
+    │ (deterministic  │  │ (silent scorer,│    │ (persona-driven    │
+    │ priority router)│  │  tool-use JSON)│    │  natural language) │
+    └─────────────────┘  └────────────────┘    └────────────────────┘
              │                                              │
-             └───────────────────┬──────────────────────────┘
+             └────────────────────┬─────────────────────────┘
                                   │
-                       ┌──────────▼───────────┐
+                       ┌──────────▼────────────┐
                        │ feedbackSynthesizer.js│  tool-use JSON, grounded
-                       └────────────────────────┘
+                       └───────────────────────┘
                                   │
                        ┌──────────▼───────────┐
-                       │  llmClient.js         │  fetch() → api.anthropic.com
-                       │  (zero SDK deps)      │  every call has a fallback path
-                       └────────────────────────┘
+                       │    llmClient.js      │  fetch() → api.anthropic.com
+                       │  (zero SDK deps)     │  every call has a fallback path
+                       └──────────────────────┘
 ```
 
 Session state lives in an in-memory `Map` (`src/store/sessionStore.js`) keyed by
