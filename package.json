@@ -1,0 +1,15 @@
+{
+  "name": "ai-cohort-interview-agent",
+  "version": "1.0.0",
+  "description": "Adaptive, LLM-driven technical interview agent personalized to each AI Cohort candidate's learning history.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node scripts/testInterview.js"
+  },
+  "engines": { "node": ">=18.17" },
+  "dependencies": {},
+  "license": "MIT"
+}
